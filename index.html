@@ -92,28 +92,31 @@
         <h2 style="text-align: center; color: #B8860B;">Sohanur Construction - Data Entry</h2>
         <div class="form-grid">
             <div class="form-group"><label>Employee ID</label><input type="text" id="in-id" readonly></div>
-            <div class="form-group"><label>Full Name</label><input type="text" id="in-name" placeholder="Name"></div>
-            <div class="form-group"><label>Father's Name</label><input type="text" id="in-father"></div>
+            <div class="form-group"><label>Full Name</label><input type="text" id="in-name" placeholder="Enter Full Name"></div>
+            <div class="form-group"><label>Father's Name</label><input type="text" id="in-father" placeholder="Enter Father's Name"></div>
             <div class="form-group">
-                <label>Designation (পদ)</label>
+                <label>Designation</label>
                 <select id="in-designation">
-                    <option value="Rod Mistri (Steel Fixer)">রড মিস্ত্রি</option>
-                    <option value="Raj Mistri (Mason)">রাজ মিস্ত্রি</option>
-                    <option value="Driver (Heavy/Light)">ড্রাইভার</option>
-                    <option value="Helper (Site Assistant)">হেলপার</option>
+                    <option value="Steel Fixer">Rod Mistri</option>
+                    <option value="।Brick Mason">Raj Mistri</option>
+                    <option value="Carpenter">Carpenter</option>
+                    <option value="Scaffolder">Scaffolder</option>
+                    <option value="Helper">Helper</option>
+                    <option value="Driver">Driver</option>
+                    <option value="Cook">Cook</option>
                 </select>
             </div>
-            <div class="form-group"><label>NID / Passport No</label><input type="text" id="in-nid"></div>
+            <div class="form-group"><label>NID / Passport No</label><input type="text" id="in-nid" placeholder="Enter ID Number"></div>
             <div class="form-group"><label>Date of Birth</label><input type="date" id="in-dob"></div>
-            <div class="form-group"><label>Experience (Years)</label><input type="number" id="in-exp"></div>
-            <div class="form-group"><label>Blood Group</label><input type="text" id="in-blood"></div>
+            <div class="form-group"><label>Experience (Years)</label><input type="number" id="in-exp" placeholder="e.g. 5"></div>
+            <div class="form-group"><label>Blood Group</label><input type="text" id="in-blood" placeholder="e.g. A+"></div>
             <div class="form-group" style="grid-column: span 2;">
                 <label>Employee Photo</label>
                 <input type="file" accept="image/*" onchange="previewImage(this)">
             </div>
 
             <div class="sig-wrapper">
-                <label>Employee Signature (এখানে সই করুন)</label>
+                <label>Employee Signature (Sign on Screen)</label>
                 <canvas id="signature-pad"></canvas>
                 <div class="sig-tools"><button type="button" class="btn-clear" onclick="clearSig()">Clear</button></div>
             </div>
@@ -123,7 +126,7 @@
     </div>
 
     <div id="cv-preview-area">
-        <button class="print-float-btn" onclick="window.print()">Print Now</button>
+        <button class="print-float-btn" onclick="window.print()">Print Document</button>
         <div class="page">
             <div class="header-container">
                 <div class="header-logo"><img src="logo.png" onerror="this.style.display='none'"></div>
@@ -143,7 +146,7 @@
                 <table>
                     <tr><td class="label">Employee ID No:</td><td id="out-id" style="color:#B8860B; font-weight:bold;"></td></tr>
                     <tr><td class="label">Designation:</td><td id="out-desig" style="font-weight:bold;"></td></tr>
-                    <tr><td class="label">Status:</td><td>Active Project Staff</td></tr>
+                    <tr><td class="label">Employment Status:</td><td>Active Project Staff</td></tr>
                 </table>
             </div>
 
@@ -194,7 +197,8 @@
         }
 
         window.onload = () => { 
-            document.getElementById('in-id').value = "SCMS-" + Math.floor(1000 + Math.random() * 9000);
+            const d = new Date();
+            document.getElementById('in-id').value = "SCMS-" + d.getFullYear().toString().substr(-2) + (d.getMonth()+1) + Math.floor(1000 + Math.random() * 9000);
             setupCanvas();
         };
 
@@ -228,7 +232,7 @@
             document.getElementById('out-id').innerText = document.getElementById('in-id').value;
             document.getElementById('out-name').innerText = name;
             document.getElementById('out-desig').innerText = desig;
-            document.getElementById('out-title').innerText = "Employee Profile: " + desig;
+            document.getElementById('out-title').innerText = "Employee Profile: " + desig.split(' (')[0];
             document.getElementById('out-father').innerText = document.getElementById('in-father').value;
             document.getElementById('out-nid').innerText = document.getElementById('in-nid').value;
             document.getElementById('out-dob').innerText = document.getElementById('in-dob').value;
@@ -242,4 +246,4 @@
         }
     </script>
 </body>
-</html>
+                    </html>
